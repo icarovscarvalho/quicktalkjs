@@ -1,0 +1,41 @@
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: var(--corBase);
+    background-image: url(./media/sand_bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    height: 100%;
+    width: 100%;
+
+    >.alert{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        width: 320px;
+        height: fit-content;
+        padding: 10px;
+
+        background-color: var(--corSecond);
+        color: #fff;
+        border-radius: 8px;
+        border: 1px solid var(--borderColor);
+
+        >button{
+            background-color: var(--buttonColor);
+            border: 1px solid var(--corBase);
+            color: #fff;
+            border-radius: 4px;
+            width: 130px;
+            height: 46px;
+            padding: 8px 16px;
+            align-self: center;
+        }
+    }
+}
