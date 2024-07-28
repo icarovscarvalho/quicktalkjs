@@ -46,15 +46,6 @@
     <main>
         <div id="comments-area">
             <div id="box-comments">
-                <!-- <div class="if-comments">
-                    <p>Uma bela mesnagem vai vir aqui</p>
-                    <div class="like-email">
-                        <span>
-                            <ion-icon name="heart-outline"></ion-icon>
-                        </span>
-                        <p>umemail@email.com</p>
-                    </div>
-                </div> -->
             </div>
             <button class="comment-btn" onclick="activeModal()">Comentar</button>
         </div>
@@ -72,9 +63,9 @@
                 <p>Deixe seu comentário:</p>
                 <button onclick="closeModal()">X</button>
             </div>
-            <textarea name="" id=""  placeholder="To criando também..." max="1024"></textarea>
+            <textarea name="" id="messageValue"  placeholder="To criando também..." max="1024"></textarea>
             <p>Informe seu email:</p>
-            <input type="email" name="" id="" placeholder="meuemail@email.com">
+            <input type="email" name="" id="emailValue" placeholder="meuemail@email.com">
             <button onclick="sendComment()">Enviar Comentário</button>
         </div>
     </div>
