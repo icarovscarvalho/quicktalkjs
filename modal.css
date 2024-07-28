@@ -1,10 +1,10 @@
-.modal-container{
+#modal-container{
     position: absolute;
     inset: 0;
     flex: 1;
     background-color: #0007;
 
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 
@@ -23,9 +23,27 @@
         border: 1px solid var(--borderColor);
         cursor: default;
 
-        >input[type='text']{
-            height: 150px;
+        >div{
+            display: flex;
+            justify-content: space-between;
+
+            >button{
+                padding: 3px;
+                width: 30px;
+                height: 30px;
+
+                background-color: transparent;
+                color: #fff;
+                border: 2px solid var(--borderColor);
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+
+        >textarea{
             padding: 10px;
+            height: 150px;
+            resize: vertical;
 
             border-radius: 8px;
             border: none;
