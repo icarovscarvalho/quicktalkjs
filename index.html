@@ -45,21 +45,27 @@
     </header>
     <main>
         <div id="comments-area">
-            <div id="if-comments">
-                <p>Uma bela mesnagem vai vir aqui</p>
-                <div>
-                    <ion-icon name="heart-outline"></ion-icon>
-                    <p>umemail@email.com</p>
-                </div>
+            <div id="box-comments">
+                <!-- <div class="if-comments">
+                    <p>Uma bela mesnagem vai vir aqui</p>
+                    <div class="like-email">
+                        <span>
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </span>
+                        <p>umemail@email.com</p>
+                    </div>
+                </div> -->
             </div>
-            <button class="comment-btn">Comentar</button>
+            <button class="comment-btn" onclick="activeModal()">Comentar</button>
         </div>
-        <div id="alert" onclick="activeModal()">
+
+        <div id="alert">
             <p>Ops...</p>
             <p>Parece que você é o primeiro a chegar aqui...</p>
-            <button>Inicie uma nova conversa</button>
+            <button onclick="activeModal()">Inicie uma nova conversa</button>
         </div>
     </main>
+
     <div id="modal-container">
         <div class="modal">
             <div>

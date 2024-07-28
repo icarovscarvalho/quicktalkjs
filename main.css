@@ -22,27 +22,39 @@ main{
         flex-direction: column;
         align-items: center;
 
-        >#if-comments{
-            padding: 10px;
-    
-            background-color: var(--commentColor);
+        >#box-comments{
+            padding: 10px 20px;
             border: 1px solid var(--borderColor);
             border-radius: 8px;
-            color: #fff;
-            margin-bottom: 10px;
-    
-            >div{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-    
-                margin-top: 20px;
-                width: 50vw;
-    
-                >ion-icon{
-                    font-size: 1.2rem;
-                    cursor: pointer;
+            margin-bottom: 20px;
+
+            >.if-comments{
+                padding: 10px;
+        
+                background-color: var(--commentColor);
+                border: 1px solid var(--borderColor);
+                border-radius: 8px;
+                color: #fff;
+                margin-bottom: 10px;
+        
+                >.like-email{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    
+                    margin-top: 20px;
+                    width: 50vw;
+        
+                    >span{
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                    }
+
+                    >p{
+                        font-size: .8rem;
+                    }
                 }
+
             }
         }
 
