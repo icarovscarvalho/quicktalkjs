@@ -46,8 +46,11 @@ main{
                     
                     margin-top: 20px;
                     width: 100%;
-        
-                    >span{
+
+                    >button{
+                        background-color: transparent;
+                        color: #fff;
+                        border: none;
                         font-size: 1.2rem;
                         cursor: pointer;
                     }

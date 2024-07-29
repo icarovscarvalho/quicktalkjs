@@ -5,9 +5,13 @@ const commentsArea = document.getElementById("comments-area");
 const boxContainer = document.getElementById("box-comments");
 const messageValue = document.getElementById("messageValue");
 const emailValue = document.getElementById("emailValue");
+const span = document.getElementsByTagName("span")[0];
+
+const usersLikes = []
 
 function activeModal() {
     modal.style.display = "flex"
+    clearDatas()
 }
 
 function closeModal() {
@@ -29,6 +33,29 @@ function userEmail() {
     return emailValue.value
 }
 
+function clearDatas() {
+    messageValue.value = ''
+    emailValue.value = ''
+}
+
+let handleLike = false
+
+function isLike(e) {
+    let userReturn = userEmail()
+    
+    if (handleLike == false) {
+        handleLike = true
+        e.innerHTML = '<ion-icon name="heart"></ion-icon>'
+        usersLikes.push(userReturn)
+        console.log(usersLikes)
+    } else {
+        handleLike = false
+        e.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
+        usersLikes.pop()
+        console.log(usersLikes)
+    }
+}
+
 function createComment() {
     const messageReturn = userMessage()
     const emailReturn = userEmail()
@@ -47,9 +74,10 @@ function createComment() {
         div.classList.add("like-email")
         divContainer.appendChild(div)
 
-        const span = document.createElement("span")
-        span.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
-        div.appendChild(span)
+        const likeBtn = document.createElement('button')
+        likeBtn.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
+        likeBtn.setAttribute('onClick', 'isLike(this)')
+        div.appendChild(likeBtn)
 
         const email = document.createElement("p")
         email.innerText = emailReturn
