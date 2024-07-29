@@ -6,7 +6,18 @@ const boxContainer = document.getElementById("box-comments");
 const messageValue = document.getElementById("messageValue");
 const emailValue = document.getElementById("emailValue");
 
+let dataArr = []
+
+function saveUserDatas() {
+    return {
+        comment:userMessage(),
+        email:userEmail(),
+        like:0
+    }
+}
+
 function activeModal() {
+    clearDatas()
     modal.style.display = "flex"
 }
 
@@ -14,11 +25,19 @@ function closeModal() {
     modal.style.display = "none"
 }
 
+function clearDatas() {
+    messageValue.value = ''
+    emailValue.value = ''
+}
+
 function sendComment() {
     commentsArea.style.display ='flex'
     alertDiv.style.display = 'none'
+
     closeModal()
+    dataArr.push(saveUserDatas())
     createComment()
+    console.log(...dataArr)
 }
 
 function userMessage() {
@@ -29,9 +48,24 @@ function userEmail() {
     return emailValue.value
 }
 
+let handleLike = false
+
+function isLike(e) {
+    let userReturn = userEmail()
+    
+    if (handleLike == false) {
+        handleLike = true
+        e.innerHTML = '<ion-icon name="heart"></ion-icon>'
+    } else {
+        handleLike = false
+        e.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
+    }
+}
+
 function createComment() {
-    const messageReturn = userMessage()
-    const emailReturn = userEmail()
+    const messageReturn = dataArr[0].comment
+    const emailReturn = dataArr[0].email
+    const likeReturn = dataArr[0].like
     main.classList.remove('no-comments')
 
     if(messageReturn.length > 0 && emailReturn.length > 0) {
@@ -47,9 +81,14 @@ function createComment() {
         div.classList.add("like-email")
         divContainer.appendChild(div)
 
-        const span = document.createElement("span")
-        span.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
-        div.appendChild(span)
+        const likeBtn = document.createElement('button')
+        likeBtn.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
+        likeBtn.setAttribute('onClick', 'isLike(this)')
+        div.appendChild(likeBtn)
+
+        const likeNum = document.createElement('p')
+        likeNum.innerText = likeReturn
+        div.appendChild(likeNum)
 
         const email = document.createElement("p")
         email.innerText = emailReturn
