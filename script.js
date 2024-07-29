@@ -1,3 +1,4 @@
+const main = document.getElementById("main")
 const modal = document.getElementById("modal-container");
 const alertDiv = document.getElementById("alert");
 const commentsArea = document.getElementById("comments-area");
@@ -29,23 +30,32 @@ function userEmail() {
 }
 
 function createComment() {
-    const divContainer = document.createElement("div")
-    divContainer.classList.add("if-comments")
-    boxContainer.appendChild(divContainer)
+    const messageReturn = userMessage()
+    const emailReturn = userEmail()
+    main.classList.remove('no-comments')
 
-    const message = document.createElement('p')
-    message.innerText = userMessage()
-    divContainer.appendChild(message)
+    if(messageReturn.length > 0 && emailReturn.length > 0) {
+        const divContainer = document.createElement("div")
+        divContainer.classList.add("if-comments")
+        boxContainer.appendChild(divContainer)
 
-    const div = document.createElement("div")
-    div.classList.add("like-email")
-    divContainer.appendChild(div)
+        const message = document.createElement('p')
+        message.innerText = messageReturn
+        divContainer.appendChild(message)
 
-    const span = document.createElement("span")
-    span.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
-    div.appendChild(span)
+        const div = document.createElement("div")
+        div.classList.add("like-email")
+        divContainer.appendChild(div)
 
-    const email = document.createElement("p")
-    email.innerText = userEmail()
-    div.appendChild(email)
+        const span = document.createElement("span")
+        span.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
+        div.appendChild(span)
+
+        const email = document.createElement("p")
+        email.innerText = emailReturn
+        div.appendChild(email)
+    } else {
+        alert('Você precisa Preencher os Campos de Mensagem e Email corretamente')
+        return
+    } 
 }

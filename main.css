@@ -36,6 +36,7 @@ main{
                 border-radius: 8px;
                 color: #fff;
                 margin-bottom: 10px;
+                width: 70vw;
                 max-width: 800px;
         
                 >.like-email{
