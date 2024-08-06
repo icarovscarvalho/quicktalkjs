@@ -12,7 +12,7 @@ function saveUserDatas() {
     return {
         comment:userMessage(),
         email:userEmail(),
-        like:0
+        isLike:false
     }
 }
 
@@ -35,9 +35,9 @@ function sendComment() {
     alertDiv.style.display = 'none'
 
     closeModal()
-    dataArr.push(saveUserDatas())
-    createComment()
-    console.log(...dataArr)
+    const newLength = dataArr.push(saveUserDatas())
+    createComment(newLength -1)
+    console.log(dataArr)
 }
 
 function userMessage() {
@@ -51,25 +51,22 @@ function userEmail() {
 let handleLike = false
 
 function isLike(e) {
-    let userReturn = userEmail()
-    
-    if (handleLike == false) {
-        handleLike = true
+    const arrPos = dataArr.length-1
+    const newComment = dataArr[arrPos]
+
+    if (newComment.isLike == false) {
+        newComment.isLike = true
         e.innerHTML = '<ion-icon name="heart"></ion-icon>'
     } else {
-        handleLike = false
+        newComment.isLike = false
         e.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
     }
 }
 
-function whatLength() {
-    return dataArr.length
-}
-
-function createComment() {
-    const messageReturn = dataArr[whatLength()].comment
-    const emailReturn = dataArr[whatLength()].email
-    const likeReturn = dataArr[whatLength()].like
+function createComment(i) {
+    const messageReturn = dataArr[i].comment
+    const emailReturn = dataArr[i].email
+    const likeReturn = dataArr[i].like
     main.classList.remove('no-comments')
 
     if(messageReturn.length > 0 && emailReturn.length > 0) {
