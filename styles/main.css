@@ -11,10 +11,9 @@ main{
     width: 100%;
 
     &.no-comments{
-        background-image: url(./media/sand_bg.png);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
+        background: var(--corBase) url(../media/sand_bg.png);
+        background-size: cover;
+        background-blend-mode: color-dodge;
     }
 
     #comments-area{

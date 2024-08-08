@@ -47,9 +47,6 @@ function userMessage() {
 function userEmail() {
     return emailValue.value
 }
-
-let handleLike = false
-
 function isLike(e) {
     const arrPos = dataArr.length-1
     const newComment = dataArr[arrPos]
