@@ -2,11 +2,14 @@ const main = document.getElementById("main")
 const modal = document.getElementById("modal-container");
 const alertDiv = document.getElementById("alert");
 const commentsArea = document.getElementById("comments-area");
-const boxContainer = document.getElementById("box-comments");
+const boxComments = document.getElementById("box-comments");
+const commentBtn = document.getElementById("comment-btn")
 const messageValue = document.getElementById("messageValue");
 const emailValue = document.getElementById("emailValue");
 
+
 let dataArr = []
+let usersDatas = []
 
 function saveUserDatas() {
     return {
@@ -32,12 +35,11 @@ function clearDatas() {
 
 function sendComment() {
     commentsArea.style.display ='flex'
+    commentBtn.style.display = 'flex'
     alertDiv.style.display = 'none'
 
     closeModal()
-    const newLength = dataArr.push(saveUserDatas())
-    createComment(newLength -1)
-    console.log(dataArr)
+    setComment()
 }
 
 function userMessage() {
@@ -47,9 +49,10 @@ function userMessage() {
 function userEmail() {
     return emailValue.value
 }
+
 function isLike(e) {
-    const arrPos = dataArr.length-1
-    const newComment = dataArr[arrPos]
+    const arrPos = usersDatas.length-1
+    const newComment = usersDatas[arrPos]
 
     if (newComment.isLike == false) {
         newComment.isLike = true
@@ -60,19 +63,23 @@ function isLike(e) {
     }
 }
 
-function createComment(i) {
-    const messageReturn = dataArr[i].comment
-    const emailReturn = dataArr[i].email
-    const likeReturn = dataArr[i].like
-    main.classList.remove('no-comments')
+function createObjComment() {
+    return {
+        message: userMessage(),
+        mail: userEmail(),
+        isLike:false
+    }
+}
 
-    if(messageReturn.length > 0 && emailReturn.length > 0) {
+function createElements() {
+    console.log("criando Element")
+    for(i in usersDatas) {
         const divContainer = document.createElement("div")
         divContainer.classList.add("if-comments")
-        boxContainer.appendChild(divContainer)
+        boxComments.appendChild(divContainer)
 
         const message = document.createElement('p')
-        message.innerText = messageReturn
+        message.innerText = usersDatas[i].message
         divContainer.appendChild(message)
 
         const div = document.createElement("div")
@@ -85,14 +92,25 @@ function createComment(i) {
         div.appendChild(likeBtn)
 
         const likeNum = document.createElement('p')
-        likeNum.innerText = likeReturn
+        likeNum.innerText = 0
         div.appendChild(likeNum)
 
         const email = document.createElement("p")
-        email.innerText = emailReturn
+        email.innerText = usersDatas[i].mail
         div.appendChild(email)
-    } else {
-        alert('Você precisa Preencher os Campos de Mensagem e Email corretamente')
-        return
-    } 
+    }
+}
+
+function removeComments() {
+    const divRemove = document.querySelectorAll('.if-comments')
+    divRemove.forEach(element => element.remove());
+}
+
+function setComment() {
+    usersDatas.push(createObjComment())
+    main.classList.remove('no-comments')
+    if(usersDatas.length>0){
+        removeComments()
+        createElements()
+    }
 }
