@@ -41,13 +41,13 @@ function userEmail() {
     return emailValue.value
 }
 
-const isLike = (e, id, i) => {
+const isLike = (e, mail, i) => {
     const newComment = usersDatas[i]
 
     if (newComment.isLike == false) {
         newComment.isLike = true
         e.innerHTML = '<ion-icon name="heart"></ion-icon>'
-        newComment.likes.push(id)
+        newComment.likes.push(mail)
     } else {
         newComment.isLike = false
         e.innerHTML = '<ion-icon name="heart-outline"></ion-icon>'
@@ -75,7 +75,7 @@ function createElements() {
     
 
     for(i in usersDatas) {
-        const id = usersDatas[i].id
+        const mail = usersDatas[i].mail
         const likeLength = usersDatas[i].likes.length
 
         const divContainer = document.createElement("div")
@@ -93,7 +93,7 @@ function createElements() {
         const likeBtn = document.createElement('button')
         likeBtn.innerHTML = likeLength>0? '<ion-icon name="heart"></ion-icon>' : '<ion-icon name="heart-outline"></ion-icon>'
         likeBtn.onclick = () => {
-            isLike(likeBtn, id, i)
+            isLike(likeBtn, mail, i)
         }
         div.appendChild(likeBtn)
 
